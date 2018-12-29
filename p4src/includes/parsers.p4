@@ -7,7 +7,6 @@ parser parse_ethernet {
     extract (ethernet);
     return select (latest.etherType) {
         ETHER_TYPE_IPV4: parse_ipv4;
-        default: ingress;
     }
 }
 
@@ -16,15 +15,8 @@ parser parse_ethernet {
 parser parse_ipv4 {
     extract(ipv4);
     return select (latest.protocol) {
-        IPV4_PROTOCOL_TCP: parse_tcp;
         IPV4_PROTOCOL_UDP: parse_udp;
-        default: ingress;
     }
-}
-
-parser parse_tcp {
-    extract (tcp);
-    return ingress;
 }
 
 parser parse_udp {

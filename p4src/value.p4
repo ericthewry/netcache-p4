@@ -186,14 +186,30 @@ control process_value {
     if (nc_hdr.op == NC_READ_REQUEST and nc_cache_md.cache_valid == 1) {
         apply (reply_read_hit_before);
     }
-    process_value_1();
-    process_value_2();
-    process_value_3();
-    process_value_4();
-    process_value_5();
-    process_value_6();
-    process_value_7();
-    process_value_8();
+    if (valid(nc_value_1)) {
+      process_value_1();
+    }  
+    if (valid(nc_value_2)) {
+      process_value_2();
+    }
+    if (valid(nc_value_3)) {
+      process_value_3();
+    }
+    if (valid(nc_value_4)) {
+      process_value_4();
+    }
+    if (valid(nc_value_5)) {
+      process_value_5();
+    }
+    if (valid(nc_value_6)) {
+      process_value_6();
+    }
+    if (valid(nc_value_7)) {
+      process_value_7();
+    }
+    if (valid(nc_value_8)) {
+      process_value_8();
+    }
     if (nc_hdr.op == NC_READ_REQUEST and nc_cache_md.cache_valid == 1) {
         apply (reply_read_hit_after);
     }
